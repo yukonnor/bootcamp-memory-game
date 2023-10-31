@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Memory Game</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <h1>Memory Game</h1>
+        <form>
+            <label for="range">How many cards?</label>
+            <input
+                type="range"
+                id="range"
+                min="6"
+                max="30"
+                step="2"
+                value="10"
+                oninput="amount.value=range.value"
+            />
+            <output name="amount" id="amount" for="range">10</output>
+            <button id="start">Start Game!</button>
+        </form>
+        <div id="score"></div>
+        <div id="game"></div>
+        <script src="script.js"></script>
+    </body>
+</html>
