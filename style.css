@@ -24,7 +24,7 @@ form {
     background-color: aliceblue;
     border: 3px solid black;
     border-radius: 20px;
-    padding: 20px;
+    padding: 10px;
     margin: 20px auto;
     box-shadow: 7px 7px black;
     max-width: 600px;
@@ -37,16 +37,22 @@ form .input-div {
 }
 
 form button {
+    display: block;
     width: 100%;
-    max-width: 600px;
-    background-color: #005488;
-    color: white;
+    max-width: 320px;
+    background-color: rgb(172, 255, 188);
+    color: rgb(0, 0, 0);
     padding: 14px 20px;
-    margin: 8px 0;
+    margin: 16px auto;
     border: none;
-    border-radius: 4px;
+    border-radius: 30px;
     cursor: pointer;
     font-family: "Calistoga", serif;
+    box-shadow: 3px 3px 0 #000;
+}
+
+form button:hover {
+    background-color: rgb(140, 211, 154);
 }
 
 .score-div {
