@@ -1,4 +1,5 @@
 const form = document.querySelector("form");
+const startButton = document.querySelector("#start");
 const scoreContainer = document.getElementById("score");
 const gameContainer = document.getElementById("game");
 
@@ -13,28 +14,31 @@ let countPairsFound = 0;
 form.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    console.log(event.target);
+    const form = event.target;
+    const input = form.children[0];
+    const button = form.children[1];
 
-    // Q: Better way to differentiate between which type of button was clicked in the form?
-    // TODO: add event listener to button instead
-    for (let child of event.target.children) {
+    // for the range input
+    for (let child of input.children) {
         if (child.id === "range") {
             // get how many cards to create
             numCards = child.value;
         }
-        // if START GAME button clicked:
-        if (child.id === "start") {
-            // Create colors, cards, divs, score area, etc:
-            runStartSequence(numCards);
+    }
 
-            // remove 'start game' button / form
-            child.remove();
-        }
-        // if RESET GAME button clicked:
-        else if (child.id === "reset") {
-            // Reset colors, cards, divs, score area, etc:
-            runResetSequence(numCards);
-        }
+    // for the start / reset button:
+    if (button.id === "start") {
+        // if START GAME button clicked:
+        // Create colors, cards, divs, score area, etc:
+        runStartSequence(numCards);
+
+        // remove 'start game' button / form
+        button.remove();
+    }
+    // if RESET GAME button clicked:
+    else if (button.id === "reset") {
+        // Reset colors, cards, divs, score area, etc:
+        runResetSequence(numCards);
     }
 });
 

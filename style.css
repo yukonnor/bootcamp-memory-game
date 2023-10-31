@@ -59,7 +59,7 @@ form button:hover {
     background-color: aliceblue;
     border: 3px solid black;
     border-radius: 20px;
-    padding: 20px;
+    padding: 10px;
     margin: 20px auto;
     box-shadow: 7px 7px black;
     max-width: 600px;
@@ -69,6 +69,10 @@ form button:hover {
     font-size: 1.2em;
     font-weight: bold;
     margin-right: 20px;
+}
+
+.score-div p {
+    margin: 10px;
 }
 
 #game {
