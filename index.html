@@ -4,21 +4,40 @@
         <meta charset="UTF-8" />
         <title>Memory Game</title>
         <link rel="stylesheet" href="style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Calistoga&family=Roboto&display=swap"
+            rel="stylesheet"
+        />
     </head>
     <body>
-        <h1>Memory Game</h1>
+        <h1>
+            <span>&nbsp;M&nbsp;</span>
+            <span>&nbsp;E&nbsp;</span>
+            <span>&nbsp;M&nbsp;</span>
+            <span>&nbsp;O&nbsp;</span>
+            <span>&nbsp;R&nbsp;</span>
+            <span>&nbsp;Y&nbsp;</span>
+            <span>&nbsp;G&nbsp;</span>
+            <span>&nbsp;A&nbsp;</span>
+            <span>&nbsp;M&nbsp;</span>
+            <span>&nbsp;E&nbsp;</span>
+        </h1>
         <form>
-            <label for="range">How many cards?</label>
-            <input
-                type="range"
-                id="range"
-                min="6"
-                max="30"
-                step="2"
-                value="10"
-                oninput="amount.value=range.value"
-            />
-            <output name="amount" id="amount" for="range">10</output>
+            <div class="input-div">
+                <label for="range">How many cards?</label>
+                <input
+                    type="range"
+                    id="range"
+                    min="6"
+                    max="30"
+                    step="2"
+                    value="10"
+                    oninput="amount.value=range.value"
+                />
+                <output name="amount" id="amount" for="range">10</output>
+            </div>
             <button id="start">Start Game!</button>
         </form>
         <div id="score"></div>
