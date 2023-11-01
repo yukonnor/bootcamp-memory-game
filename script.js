@@ -23,6 +23,7 @@ form.addEventListener("submit", function (event) {
         if (child.id === "range") {
             // get how many cards to create
             numCards = child.value;
+            console.log(`User is asking for ${numCards} cards.`);
         }
     }
 
@@ -48,7 +49,8 @@ function runStartSequence(numCards) {
 
     const colors = generateColors(totalPairs);
     const cards = assignColorsToCards(colors, numCards);
-    let shuffledCards = shuffle(cards);
+    console.log(`${cards.length} cards were assigned colors.`);
+    const shuffledCards = shuffle(cards);
 
     createDivsForColors(shuffledCards);
     createResetButton();
@@ -61,9 +63,8 @@ function runResetSequence(numCards) {
 
     const colors = generateColors(totalPairs);
     const cards = assignColorsToCards(colors, numCards);
-
-    // shuffle the cards
-    shuffledCards = shuffle(cards);
+    console.log(`${cards.length} cards were assigned colors.`);
+    const shuffledCards = shuffle(cards);
 
     createDivsForColors(shuffledCards);
 
@@ -72,6 +73,7 @@ function runResetSequence(numCards) {
 }
 
 function generateColors(totalPairs) {
+    console.log(`Generating colors for ${totalPairs} card pairs.`);
     const randColorArray = [];
     let hueIncrement = Math.floor(360 / totalPairs) - 1;
     for (let i = 0; i < totalPairs; i++) {
@@ -87,11 +89,11 @@ function generateColors(totalPairs) {
 }
 
 function assignColorsToCards(colors, numCards) {
+    console.log(`Assigning ${colors.length} color pairs for ${colors.length * 2} cards.`);
     const cards = [];
-    for (let i = 0; i < numCards / 5; i++) {
-        for (let color of colors) {
-            cards.push(color);
-        }
+    for (let color of colors) {
+        cards.push(color);
+        cards.push(color);
     }
 
     return cards;
@@ -99,6 +101,8 @@ function assignColorsToCards(colors, numCards) {
 
 function shuffle(array) {
     let counter = array.length;
+
+    console.log(`Shuffling colors for ${counter} total cards.`);
 
     // While there are elements in the array
     while (counter > 0) {
@@ -188,14 +192,14 @@ function createResetButton() {
 
 function createDivsForColors(colorArray) {
     for (let color of colorArray) {
-        // create a new div
-        const newDiv = document.createElement("div");
-        newDiv.setAttribute("data-color", color);
+        // create a new card div
+        const cardDiv = document.createElement("div");
+        cardDiv.setAttribute("data-color", color);
 
         // call a function handleCardClick when a div is clicked on
-        newDiv.addEventListener("click", handleCardClick);
+        cardDiv.addEventListener("click", handleCardClick);
 
-        gameContainer.append(newDiv);
+        gameContainer.append(cardDiv);
     }
 }
 
