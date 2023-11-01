@@ -75,10 +75,15 @@ form button:hover {
     margin: 10px;
 }
 
+#game-wrapper {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
 #game {
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: space-between; */
+    justify-content: space-around;
 }
 
 #game div {
@@ -91,6 +96,7 @@ form button:hover {
     display: inline-block;
     background-color: white;
     box-shadow: 4px 4px black;
+    transition: 0.15s;
 }
 
 #game div:hover {

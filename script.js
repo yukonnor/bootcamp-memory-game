@@ -48,7 +48,7 @@ function runStartSequence(numCards) {
 
     const colors = generateColors(totalPairs);
     const cards = assignColorsToCards(colors, numCards);
-    let shuffledCards = shuffle(cards);
+    const shuffledCards = shuffle(cards);
 
     createDivsForColors(shuffledCards);
     createResetButton();
@@ -61,9 +61,7 @@ function runResetSequence(numCards) {
 
     const colors = generateColors(totalPairs);
     const cards = assignColorsToCards(colors, numCards);
-
-    // shuffle the cards
-    shuffledCards = shuffle(cards);
+    const shuffledCards = shuffle(cards);
 
     createDivsForColors(shuffledCards);
 
@@ -88,10 +86,9 @@ function generateColors(totalPairs) {
 
 function assignColorsToCards(colors, numCards) {
     const cards = [];
-    for (let i = 0; i < numCards / 5; i++) {
-        for (let color of colors) {
-            cards.push(color);
-        }
+    for (let color of colors) {
+        cards.push(color);
+        cards.push(color);
     }
 
     return cards;
@@ -188,31 +185,24 @@ function createResetButton() {
 
 function createDivsForColors(colorArray) {
     for (let color of colorArray) {
-        // create a new div
-        const newDiv = document.createElement("div");
-        newDiv.setAttribute("data-color", color);
+        // create a new card div
+        const cardDiv = document.createElement("div");
+        cardDiv.setAttribute("data-color", color);
 
         // call a function handleCardClick when a div is clicked on
-        newDiv.addEventListener("click", handleCardClick);
+        cardDiv.addEventListener("click", handleCardClick);
 
-        gameContainer.append(newDiv);
+        gameContainer.append(cardDiv);
     }
 }
 
 function removeDivs() {
     let divs = gameContainer.children;
-    let divArray = [];
+    divCount = divs.length;
 
-    // Q: Is there a better way to do this with the data from the HTMLCollection directly?
-    // maybe use *forEach* instead within each collection
-    // create array of div elements
-    for (let div of divs) {
-        divArray.push(div);
-    }
-
-    // remove divs
-    for (let div of divArray) {
-        div.remove();
+    // count down to remove last item in HTMLCollection
+    for (let i = divCount - 1; i >= 0; i--) {
+        divs[i].remove();
     }
 }
 
@@ -235,7 +225,6 @@ function handleCardClick(event) {
         timerDone = false;
 
         // Q: Cleaner way to do this? A loop didn't seem right when comparing two elements.
-        // NOTE: bug would happen if array length wasn't
         if (attemptedCards[0].style.backgroundColor === attemptedCards[1].style.backgroundColor) {
             // Match found!
             console.log("Match! keeping cards revealed");
@@ -249,9 +238,7 @@ function handleCardClick(event) {
             timerDone = true;
         } else {
             // Not a match!
-            console.log(
-                `${attemptedCards[0].className} != ${attemptedCards[1].className} --> turning cards back over in 1s`
-            );
+            console.log(`Not a match --> turning cards back over in 1s`);
 
             // hide cards after 1s if not a match
             setTimeout(function () {
@@ -286,7 +273,6 @@ function hideCards(attemptedCards) {
 
 function saveScore(score, numPairs) {
     let countPairs = numPairs;
-    let scoreObj = { countPairs: score };
 
     let bestScore = localStorage.getItem(countPairs);
 

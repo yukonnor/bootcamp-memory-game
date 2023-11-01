@@ -30,18 +30,20 @@
                 <input
                     type="range"
                     id="range"
-                    min="6"
-                    max="30"
-                    step="2"
-                    value="10"
+                    min="8"
+                    max="28"
+                    step="4"
+                    value="12"
                     oninput="amount.value=range.value"
                 />
-                <output name="amount" id="amount" for="range">10</output>
+                <output name="amount" id="amount" for="range">12</output>
             </div>
             <button id="start">Start Game!</button>
         </form>
         <div id="score"></div>
-        <div id="game"></div>
+        <div id="game-wrapper">
+            <div id="game"></div>
+        </div>
         <script src="script.js"></script>
     </body>
 </html>
