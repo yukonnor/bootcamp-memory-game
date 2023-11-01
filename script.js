@@ -23,7 +23,6 @@ form.addEventListener("submit", function (event) {
         if (child.id === "range") {
             // get how many cards to create
             numCards = child.value;
-            console.log(`User is asking for ${numCards} cards.`);
         }
     }
 
@@ -49,7 +48,6 @@ function runStartSequence(numCards) {
 
     const colors = generateColors(totalPairs);
     const cards = assignColorsToCards(colors, numCards);
-    console.log(`${cards.length} cards were assigned colors.`);
     const shuffledCards = shuffle(cards);
 
     createDivsForColors(shuffledCards);
@@ -63,7 +61,6 @@ function runResetSequence(numCards) {
 
     const colors = generateColors(totalPairs);
     const cards = assignColorsToCards(colors, numCards);
-    console.log(`${cards.length} cards were assigned colors.`);
     const shuffledCards = shuffle(cards);
 
     createDivsForColors(shuffledCards);
@@ -73,7 +70,6 @@ function runResetSequence(numCards) {
 }
 
 function generateColors(totalPairs) {
-    console.log(`Generating colors for ${totalPairs} card pairs.`);
     const randColorArray = [];
     let hueIncrement = Math.floor(360 / totalPairs) - 1;
     for (let i = 0; i < totalPairs; i++) {
@@ -89,7 +85,6 @@ function generateColors(totalPairs) {
 }
 
 function assignColorsToCards(colors, numCards) {
-    console.log(`Assigning ${colors.length} color pairs for ${colors.length * 2} cards.`);
     const cards = [];
     for (let color of colors) {
         cards.push(color);
@@ -101,8 +96,6 @@ function assignColorsToCards(colors, numCards) {
 
 function shuffle(array) {
     let counter = array.length;
-
-    console.log(`Shuffling colors for ${counter} total cards.`);
 
     // While there are elements in the array
     while (counter > 0) {
@@ -205,18 +198,11 @@ function createDivsForColors(colorArray) {
 
 function removeDivs() {
     let divs = gameContainer.children;
-    let divArray = [];
+    divCount = divs.length;
 
-    // Q: Is there a better way to do this with the data from the HTMLCollection directly?
-    // maybe use *forEach* instead within each collection
-    // create array of div elements
-    for (let div of divs) {
-        divArray.push(div);
-    }
-
-    // remove divs
-    for (let div of divArray) {
-        div.remove();
+    // count down to remove last item in HTMLCollection
+    for (let i = divCount - 1; i >= 0; i--) {
+        divs[i].remove();
     }
 }
 
@@ -239,7 +225,6 @@ function handleCardClick(event) {
         timerDone = false;
 
         // Q: Cleaner way to do this? A loop didn't seem right when comparing two elements.
-        // NOTE: bug would happen if array length wasn't
         if (attemptedCards[0].style.backgroundColor === attemptedCards[1].style.backgroundColor) {
             // Match found!
             console.log("Match! keeping cards revealed");
@@ -253,9 +238,7 @@ function handleCardClick(event) {
             timerDone = true;
         } else {
             // Not a match!
-            console.log(
-                `${attemptedCards[0].className} != ${attemptedCards[1].className} --> turning cards back over in 1s`
-            );
+            console.log(`Not a match --> turning cards back over in 1s`);
 
             // hide cards after 1s if not a match
             setTimeout(function () {
@@ -290,7 +273,6 @@ function hideCards(attemptedCards) {
 
 function saveScore(score, numPairs) {
     let countPairs = numPairs;
-    let scoreObj = { countPairs: score };
 
     let bestScore = localStorage.getItem(countPairs);
 
